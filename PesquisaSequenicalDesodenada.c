@@ -2,16 +2,26 @@
 #include <stdlib.h>
 #include <time.h>
 
-# define TAM 10
+int procura(int numeros[], int TAM, int elementoProcurado) {
+     int k=0;
+     while (k < TAM ) {
+         if (numeros[k] == elementoProcurado) {
+             return k+1;
+         } else{
+             k++;
+         }
+     }
+     
+ }
+
 
 int main() {
+    int TAM = 10;
 	int numeros[TAM];
-	int i, j, b, aux;
-  clock_t t;
-	double tempo;
+	int i, elementoProcurado;
+	
 
 //Gerando numeros aleatorios e atribuindo as posic�es no vetor 
-	
 	
 	srand(time(NULL)); //Garantindo a aleatoriedade da rand()
 	printf("\nSequencia aleatoria:\n\n");
@@ -22,33 +32,14 @@ int main() {
 		printf("%d ", numeros[i]);
 	
 	}
-	printf("\n\n");
-	printf("Ordenando:\n\n");
-
-//Ordenando os vetores
-t= clock();
- for(j=0; j< TAM; j++){
-		for (i=0; i < TAM - 1; i++){
-			if ( numeros [i] > numeros [i+1]){
-				aux = numeros[i+1];
-				numeros[i+1]= numeros [i];
-				numeros[i]= aux;
-		   }
-    }
-  }
-t= clock()-t;
-tempo= (t/(CLOCKS_PER_SEC/1000));
-
-
-
-
-	printf("\n\nSequencia ordenada:\n\n");
-	for (b=0; b < TAM ; b++){
-			printf("%d ", numeros[b]);
-	} 
-printf("\n\n");
-
-	printf("Tempo: %lf", tempo);
+	
+	printf("\n\nQual o numero que deseja saber a localização ? ");
+	scanf("%d", &elementoProcurado);
+	
+	int retorno = procura(numeros, TAM, elementoProcurado);
+	
+	printf("A localização do numero %d é %d",elementoProcurado, retorno);
+	
 	return 0;
 } 
-    
+
